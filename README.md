@@ -22,3 +22,19 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+* NOTES
+Setup testing according to:
+https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one
+
+Need to finish setting up models using same setup
+
+https://www.postgresql.org/docs/9.1/datatype-enum.html
+
+https://dbdiagram.io/d/5ea36b9d39d18f5553fe2dbd
+
+Probably need an
+Enum
+- Mediums
+- States
