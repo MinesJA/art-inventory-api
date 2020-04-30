@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_203638) do
+ActiveRecord::Schema.define(version: 2020_04_30_165111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,5 +37,68 @@ ActiveRecord::Schema.define(version: 2020_04_29_203638) do
     t.index ["artist_id"], name: "index_artworks_on_artist_id"
   end
 
+  create_table "collectors", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "curators", force: :cascade do |t|
+    t.string "name"
+    t.string "site"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "opening"
+    t.datetime "closing"
+    t.string "venuable_type"
+    t.bigint "venuable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["venuable_type", "venuable_id"], name: "index_exhibitions_on_venuable_type_and_venuable_id"
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.string "name"
+    t.string "site"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "address_1"
+    t.string "address_2"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_locations_on_addressable_type_and_addressable_id"
+  end
+
+  create_table "media", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "media_artworks", force: :cascade do |t|
+    t.bigint "medium_id"
+    t.bigint "artwork_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artwork_id"], name: "index_media_artworks_on_artwork_id"
+    t.index ["medium_id"], name: "index_media_artworks_on_medium_id"
+  end
+
   add_foreign_key "artworks", "artists"
+  add_foreign_key "media_artworks", "artworks"
+  add_foreign_key "media_artworks", "media"
 end

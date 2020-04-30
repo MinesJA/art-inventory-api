@@ -1,5 +1,7 @@
 class Artwork < ApplicationRecord
   belongs_to :artist
+  has_many :media_artworks
+  has_many :media, through: :media_artworks
 
   validates_presence_of :title
   validates_presence_of :height_in
