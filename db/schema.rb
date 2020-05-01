@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 2020_04_30_165111) do
     t.string "name"
     t.datetime "opening"
     t.datetime "closing"
-    t.string "venuable_type"
-    t.bigint "venuable_id"
+    t.string "organizer_type"
+    t.bigint "organizer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["venuable_type", "venuable_id"], name: "index_exhibitions_on_venuable_type_and_venuable_id"
+    t.index ["organizer_type", "organizer_id"], name: "index_exhibitions_on_organizer_type_and_organizer_id"
   end
 
   create_table "galleries", force: :cascade do |t|

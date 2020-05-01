@@ -4,7 +4,7 @@ class CreateExhibitions < ActiveRecord::Migration[5.2]
       t.string :name
       t.datetime :opening
       t.datetime :closing
-      t.references :venuable, polymorphic: true
+      t.references :organizer, polymorphic: true
 
       t.timestamps
     end
