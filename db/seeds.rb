@@ -17,15 +17,14 @@ Artwork.delete_all
 Artist.delete_all
 
 
-artist = Artist.create(first_name: "Rachel", last_name: "Rickert")
-
-painting = artist.artworks.create(title: "Painting 1", height_in: "5", width_in: "5")
-
-painting.media.create(name: "oil")
-painting.media.create(name: "acryllic")
-
-
-# gallery = Gallery.create(name: "Gallery 1")
+artist = Artist.create_with_location(
+    first_name: "Rachel", 
+    last_name: "Rickert",
+    address_1: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state_abbr,
+    zip: Faker::Address.zip
+)
 
 gallery = Gallery.create_with_location(
     name: "Gallery 1", 
@@ -35,12 +34,7 @@ gallery = Gallery.create_with_location(
     zip: Faker::Address.zip
 )
 
-# gal_loc = gallery.locations.create(
-#     address_1: Faker::Address.street_address,
-#     city: Faker::Address.city,
-#     state: Faker::Address.state_abbr,
-#     zip: Faker::Address.zip
-# )
+painting = artist.create_painting(title: "Painting 1", height_in: "5", width_in: "5", media: ["oil", "acryllic"])
 
 gal_ex = gallery.exhibitions.create(
     name: "Reveries",

@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Artwork, type: :model do
-  it { should belong_to(:artist) }
+
   it { should have_many(:media) }
+  it { should have_many(:transactions) }
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:height_in) }

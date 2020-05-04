@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_165111) do
+ActiveRecord::Schema.define(version: 2020_05_03_173239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,10 +31,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_165111) do
     t.datetime "date_completed"
     t.decimal "height_in"
     t.decimal "width_in"
-    t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id"], name: "index_artworks_on_artist_id"
   end
 
   create_table "collectors", force: :cascade do |t|
@@ -98,7 +96,28 @@ ActiveRecord::Schema.define(version: 2020_04_30_165111) do
     t.index ["medium_id"], name: "index_media_artworks_on_medium_id"
   end
 
-  add_foreign_key "artworks", "artists"
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "artwork_id"
+    t.string "supplier_type"
+    t.bigint "supplier_id"
+    t.string "recipient_type"
+    t.bigint "recipient_id"
+    t.bigint "location_id"
+    t.string "transferable_type"
+    t.bigint "transferable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "next_id"
+    t.integer "prev_id"
+    t.index ["artwork_id"], name: "index_transactions_on_artwork_id"
+    t.index ["location_id"], name: "index_transactions_on_location_id"
+    t.index ["recipient_type", "recipient_id"], name: "index_transactions_on_recipient_type_and_recipient_id"
+    t.index ["supplier_type", "supplier_id"], name: "index_transactions_on_supplier_type_and_supplier_id"
+    t.index ["transferable_type", "transferable_id"], name: "index_transactions_on_transferable_type_and_transferable_id"
+  end
+
   add_foreign_key "media_artworks", "artworks"
   add_foreign_key "media_artworks", "media"
+  add_foreign_key "transactions", "artworks"
+  add_foreign_key "transactions", "locations"
 end

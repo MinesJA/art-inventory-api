@@ -10,13 +10,13 @@ class Location < ApplicationRecord
     private 
 
     def is_zipcode?
-        if zip.digits.size != 5
+        if zip.nil? || zip.digits.size != 5
             errors.add(:zip, "Zip must be exactly 5 digits")
         end
     end
 
     def is_state?
-        if state.length != 2
+        if state.nil? || state.length != 2
             errors.add(:state, "State must be in form of 2 letter abbreviation")
         end
     end
