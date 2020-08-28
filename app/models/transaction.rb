@@ -6,7 +6,10 @@ class Transaction < ApplicationRecord
   # belongs_to :prev, class_name: "Transaction"
 
   belongs_to :artwork
-  belongs_to :supplier, :polymorphic => true
+  # belongs_to :supplier, :polymorphic => true
+  
+  # Transaction will only have a recipient, the supplier is assumed to be the recipient
+  # from the last transaction 
   belongs_to :recipient, :polymorphic => true
 
   belongs_to :location

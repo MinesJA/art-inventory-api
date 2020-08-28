@@ -1,5 +1,6 @@
 class Location < ApplicationRecord
     belongs_to :addressable, :polymorphic => true
+    has_many :transactions
     
     validates_presence_of :address_1, :city, :state, :zip
     validate :is_zipcode?

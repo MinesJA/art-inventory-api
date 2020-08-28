@@ -8,6 +8,8 @@ RSpec.describe Location, type: :model do
 
   it { should belong_to(:addressable) }
 
+  it { should have_many(:transactions) }
+
   # Validations
   it { should validate_presence_of(:address_1) }
   it { should validate_presence_of(:city) }
