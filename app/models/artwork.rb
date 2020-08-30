@@ -7,7 +7,7 @@ class Artwork < ApplicationRecord
   validates_presence_of :height_in
   validates_presence_of :width_in
 
-  def started_at
-    self[:started_at] || self[:created_at]
+  def date_started
+    self[:date_started] || self[:created_at]
   end
 end

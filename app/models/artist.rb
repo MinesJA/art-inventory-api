@@ -17,9 +17,6 @@ class Artist < Actor
 
         byebug
 
-
-
-
         # artwork.media.fi
 
         # painting.media.create(name: "oil") find or create
