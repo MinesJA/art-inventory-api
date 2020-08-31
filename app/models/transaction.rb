@@ -10,5 +10,14 @@ class Transaction < ApplicationRecord
   belongs_to :recipient, :polymorphic => true
 
   belongs_to :location
-  belongs_to :transferable, :polymorphic => true
+  # belongs_to :transferable, :polymorphic => true
+
+  def Transaction.create_genesis(artwork:, creator:, location:)
+    self.create(artwork: artwork, supplier: creator, recipient: creator, location: location)
+  end
+
+  def is_genesis?
+    prev == nil
+  end
+
 end

@@ -26,6 +26,19 @@ RSpec.describe Artist, type: :model do
     expect(artist.locations.first.id).to be_truthy
   end
 
+  it 'can create an artwork which generates a transaction' do
+    artist = create(:artist)
+
+    artwork = artist.create_artwork(
+      title: "My Painting", 
+      height_in: "5.00", 
+      width_in: "6.00", 
+      media: ["Oil", "Canvas"]
+    )
+
+    expect(artwork.transactions.size).to be 1
+  end
+
   # it 'can create an artwork which should generate a transaction for that creation' do
   #   artist = create(:artist)
   #   artist.create_artwork(title: "Title of Piece", width_in: 5, height_in: 5, media: ["Oil"])

@@ -19,4 +19,8 @@ RSpec.describe Artwork, type: :model do
     expect(artwork.date_started).to eq(artwork.created_at)
   end
 
+  it 'cannot be created without a corresponding genesis transaction' do
+    artwork = create
+  end
+
 end
